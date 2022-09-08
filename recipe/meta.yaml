@@ -10,7 +10,7 @@
 {% set py_build_string = "py{}{}".format(CONDA_PY, build_string) %}
 {% set install_base = "opt/hdk" %}
 {% set arrow_version = "8.*" %}
-{% set llvm_version = "12" %}
+{% set llvm_version = "14" %}
 
 package:
   name: hdk
@@ -59,7 +59,7 @@ outputs:
         - maven
         - ninja
       host:
-        - arrow-cpp ={{ arrow_version }}=*{{ build_ext }}
+        - arrow-cpp ={{ arrow_version }}
         - boost-cpp
         - clangdev {{ llvm_version }}
         - cython
@@ -67,12 +67,12 @@ outputs:
         - llvmdev {{ llvm_version }}
         - llvm {{ llvm_version }}
         - numpy
-        - pyarrow ={{ arrow_version }}=*{{ build_ext }}
+        - pyarrow ={{ arrow_version }}
         - python
         - tbb-devel
       run:
-        - arrow-cpp
-        - pyarrow ={{ arrow_version }}=*{{ build_ext }}
+        - arrow-cpp ={{ arrow_version }}
+        - pyarrow ={{ arrow_version }}
         - python
         - openjdk 11.*
         - zlib
