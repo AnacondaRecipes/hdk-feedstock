@@ -26,7 +26,6 @@ build:
   skip: True  # [not linux64]
 
 outputs:
-
   - name: pyhdk
     version: {{ version }}
     script: build-hdk.sh
@@ -57,7 +56,6 @@ outputs:
         - llvmdev {{ llvm_version }}
         - make
         - maven
-        - ninja
         - cython
         - numpy
         - arrow-cpp ={{ arrow_version }}

@@ -2,8 +2,7 @@
 
 set -ex
 
-export EXTRA_CMAKE_OPTIONS="-GNinja"
-
+export EXTRA_CMAKE_OPTIONS=""
 export INSTALL_BASE=opt/hdk
 export BUILD_EXT=cpu
 
@@ -76,25 +75,13 @@ esac
 # Run build
 case "$PKG_NAME" in
 
-    libhdk)
+    libhdk | pyhdk)
 
-        # ninja
         make -j && make install
         ;;
 
-    pyhdk)
-
-        # cd python
-        # $PYTHON setup.py build_ext -g -f install
-        # cd python
-        # $PYTHON setup.py build_ext -g -f install
-        # cd ..
-        ninja
-        # cd python
-        # $PYTHON setup.py build_ext -g -f install
-        # cd ..
-        # ninja pyhdk        
-        # make -j && make install
+    *)
+        echo "Nothing configured in build for $PKG_NAME"
         ;;
 
 esac
@@ -102,8 +89,9 @@ cd ..
 
 # Run install
 case "$PKG_NAME" in
+
     pyhdk)
-        # ninja pyhdk-install
+
         cmake --install build --prefix $PREFIX/$INSTALL_BASE        
 
         # create activate/deactivate scripts
